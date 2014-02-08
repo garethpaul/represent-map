@@ -15,6 +15,17 @@ if($task == "hide") {
 if($task == "approve") {
   $place_id = htmlspecialchars($_GET['place_id']);
   mysql_query("UPDATE places SET approved=1 WHERE id='$place_id'") or die(mysql_error());
+  // post to twitter
+  if ($twttr){
+    include_once "../libs/twitter.php";
+    $connection = new TwitterOAuth($twttr_consumerkey,$twttr_consumersecret, $twttr_accesstoken, $twttr_accesstokensecret);
+    $result = mysql_query("SELECT title, uri FROM places WHERE id='$place_id'") or die(mysql_error());
+    $place = mysql_fetch_assoc($result);
+    $uri = $place['uri'];
+    $title = $place['title'];
+    $message = "Just added $title to the map. $uri";
+    $connection->post('statuses/update', array('status' => "$message"));
+  }
   header("Location: index.php?view=$view&search=$search&p=$p");
   exit;
 }

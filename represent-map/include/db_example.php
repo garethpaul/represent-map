@@ -103,6 +103,17 @@ $twitter = array(
   "username" => "representla"
 );
 
+// Twitter integration (optional)
+//
+// Share newly added start-ups on Twitter as they are added.
+// You can turn this integration on and off via the $twttr variable.
+$twttr = false;
+    $twttr_consumerkey = "CONSUMER_KEY";
+    $twttr_consumersecret = "CONSUMER_SECRET";
+    $twttr_accesstoken = "ACCESS_TOKEN";
+    $twttr_accesstokensecret = "ACCESS_TOKEN_SECRET";
+
+
 // Short blurb about this site (visible to visitors)
 $blurb = "This map was made to connect and promote the Los Angeles tech startup community.  Let's put LA on the map!";
 
